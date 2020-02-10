@@ -56,7 +56,7 @@
 //	
 //	
 //}
-//rt_uint8_t displayNumber[10]={1,1,2,3,4};
+rt_uint8_t displayNumber[10]={1,2,3,4,5,6,7,8,9,0};
 int main(void)
 {
 //    int count = 1;
@@ -65,7 +65,13 @@ int main(void)
 	pcf8563_init();
 	pcf8563_start();
 	bh1750_init();
-//	display(displayNumber,(5%10)&0x01);
+	tm1638Init();
+	while(1)
+	{
+		display(displayNumber,1,0,0);
+		rt_thread_mdelay(10);
+	}
+	
 //	while(1)
 //	{
 //		si702x_read_temp_humi();
