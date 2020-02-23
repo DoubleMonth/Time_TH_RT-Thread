@@ -42,7 +42,7 @@ rt_int16_t si702x_read_temperature(void)
 	if(RT_EOK == si702x_read_reg(si702x_dev->i2c,SI702X_MEASURE_TEMP_HOLD_CMD,2,temp_buf))
 	{
 		temp=(rt_uint16_t)((((temp_buf[0]<<8)+temp_buf[1])*175.72/65536.0-46.85)*10);
-		rt_kprintf("temperature=%d\n",temp);
+//		rt_kprintf("temperature=%d\n",temp);
 		return temp;
 	}
 	else
@@ -50,7 +50,6 @@ rt_int16_t si702x_read_temperature(void)
 		rt_kprintf("Error!!!,read temperature error!\n",temp);
 		return -500;
 	}
-	
 }
 rt_int16_t si702x_read_humidity(void)
 {
@@ -59,7 +58,7 @@ rt_int16_t si702x_read_humidity(void)
 	if(RT_EOK==si702x_read_reg(si702x_dev->i2c,SI702X_MEASURE_HUMI_HOLD_CMD,2,temp_buf))
 	{
 		temp=(rt_uint16_t)((((temp_buf[0]<<8)+temp_buf[1])*125.0/65536.0-6.0)*10);
-		rt_kprintf("humidity=%d\n",temp);
+//		rt_kprintf("humidity=%d\n",temp);
 		return temp;
 	}
 	else

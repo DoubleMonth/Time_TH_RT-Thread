@@ -11,6 +11,7 @@
 #define STB_PIN 	GET_PIN(B, 9)
 
 void tm1638Init(void);
+void tm1638Setluminance(rt_uint8_t lumi);
 static void tm1638Write(rt_uint8_t data);
 static void writeCMD(rt_uint8_t cmd);
 static void writeData(rt_uint8_t add,rt_uint8_t data);

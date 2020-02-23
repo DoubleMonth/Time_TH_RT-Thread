@@ -4,7 +4,7 @@
 #include <string.h>
 #include "tm1638/tm1638.h"
 uint8_t tab[]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,
-                           0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+                           0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71,0x00};
 void tm1638Init(void)
 {
 	rt_uint8_t i;
@@ -16,7 +16,7 @@ void tm1638Init(void)
 	rt_pin_write(CLK_PIN,PIN_HIGH);
 	rt_pin_write(STB_PIN,PIN_HIGH);
 	
-	writeCMD(0x8f);		//设置亮度
+	writeCMD(0x8B);		//设置亮度
 	writeCMD(0x40);		//采用地址自动加1
 	rt_pin_write(STB_PIN,PIN_LOW);
 	tm1638Write(0xC0);		//设置起始地址
@@ -25,6 +25,10 @@ void tm1638Init(void)
 		tm1638Write(0x00);
 	}
 	rt_pin_write(STB_PIN,PIN_HIGH);
+}
+void tm1638Setluminance(rt_uint8_t lumi)
+{
+	writeCMD(lumi);		//设置亮度
 }
 static void tm1638Write(rt_uint8_t data)
 {
@@ -117,9 +121,8 @@ void display(rt_uint8_t *number,rt_uint8_t pointFlash, rt_uint8_t pointPosition_
 				if(((tab[*(number+i+8)])>>j)&0x01)
 				data[j] +=1;
 			}
-			
-			
 		}
 		writeData(2*j+1,data[j]);
 	}
+	
 }

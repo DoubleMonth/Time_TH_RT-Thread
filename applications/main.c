@@ -15,6 +15,8 @@
 #include "pcf8563/pcf8563.h"
 #include "tm1638/tm1638.h"
 #include "bh1750/bh1750.h"
+#include "sensor/sensor.h"
+#include "agile_button-latest/examples/example_agile_button.h"
 
 /* defined the LED0 pin: PC13 */
 //#define LED0_PIN    GET_PIN(C, 13)
@@ -56,22 +58,33 @@
 //	
 //	
 //}
-rt_uint8_t displayNumber[10]={1,2,3,4,5,6,7,8,9,0};
+struct pcf8563_time time_temp;
 int main(void)
 {
-//    int count = 1;
-	
 	si702x_init();
 	pcf8563_init();
 	pcf8563_start();
 	bh1750_init();
 	tm1638Init();
-	while(1)
-	{
-		display(displayNumber,1,0,0);
-		rt_thread_mdelay(10);
-	}
+	startKeyPress(); //启动按键
+	keySemInit();  //创建按键信号量 
+	thread_led_update();
+	thread_time_update();
+	thread_temp_humi_update();
+	thread_illuminace_update();
+	thread_keySetPcf8563Time();
+	mutex_key();
 	
+//	rt_thread_mdelay(5000);
+//	time_temp.hour=23;
+//	time_temp.minute=59;
+//	time_temp.second=50;
+//	pcf8563WriteTime(time_temp);
+//	while(1)
+//	{
+//		display(displayNumber,1,0,0);
+//		rt_thread_mdelay(10);
+//	}
 //	while(1)
 //	{
 //		si702x_read_temp_humi();
@@ -80,7 +93,6 @@ int main(void)
 //		bh1750_read_illuminace();
 //		rt_thread_mdelay(1000);
 //	}
-	
     return RT_EOK;
 }
 //MSH_CMD_EXPORT(key_thread_entry,RT-Thread first  key sample);

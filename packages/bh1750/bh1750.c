@@ -46,10 +46,10 @@ static rt_err_t bh1750_write_reg(struct rt_i2c_bus_device *bus, rt_uint8_t reg,r
 		return -RT_ERROR;
 	}
 }
-void bh1750_read_illuminace(void)
+rt_uint32_t bh1750_read_illuminace(void)
 {
 	rt_err_t result;
-	uint32_t illuminace;
+	rt_uint32_t illuminace;
 	rt_uint8_t illuminace_buf[2];
 	RT_ASSERT(bh1750_dev);
 	result = rt_mutex_take(bh1750_dev->lock, RT_WAITING_FOREVER);
@@ -59,14 +59,14 @@ void bh1750_read_illuminace(void)
 	{
 		bh1750_read_reg(bh1750_dev->i2c,BH1750_READ_ILLUMINACE_ADDR,2,&illuminace_buf[0]);
 		illuminace=(uint32_t)(((illuminace_buf[0]<<8)+illuminace_buf[1])/1.2*10);					//Êý¾Ý×ª»»
-		rt_kprintf("The illuminace = %d\n",illuminace);
+//		rt_kprintf("illuminace=%d\n",illuminace);
 	}
 	else
 	{
 		LOG_E("The bh1750 could not respond time read at this time. Please try again");
 		rt_mutex_release(bh1750_dev->lock);
 	}
-	return ;
+	return illuminace;
 }
 
 bh1750_device_t bh1750_init(void)

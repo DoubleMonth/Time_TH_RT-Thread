@@ -23,5 +23,5 @@ struct bh1750_device
 };
 typedef struct bh1750_device *bh1750_device_t;
 bh1750_device_t bh1750_init(void);
-void bh1750_read_illuminace(void);;
+rt_uint32_t bh1750_read_illuminace(void);;
 #endif

@@ -41,4 +41,6 @@ struct pcf8563_time pcf8563_read_time(void);
 rt_err_t pcf8563_start(void);
 rt_err_t pcf8563_stop(void);
 struct pcf8563_day pcf8563_read_day(void);
+void pcf8563WriteTime(struct pcf8563_time time_temp);
+void pcf8563WriteDay(struct pcf8563_day day_temp);
 #endif
