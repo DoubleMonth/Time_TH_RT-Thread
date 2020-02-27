@@ -69,12 +69,19 @@ static void led_update(void *parameter)
 		rt_thread_mdelay(50);
 	}
 }
+extern struct pcf8563_time UTC_time;
+extern rt_uint8_t update_UTC_time_Flag;
 static void time_update(void *parameter)
 {
 	struct pcf8563_time temp;
 	
 	while(1)
 	{
+		if(update_UTC_time_Flag)   //更新本地时间为UTC时间
+		{
+			pcf8563WriteTime(UTC_time);
+			update_UTC_time_Flag=0;
+		}
 		rt_mutex_take(key_mutex,10000);	//获取设置时间互斥量
 		temp=pcf8563_read_time();
 		displayNumber[0]=temp.hour/10;
@@ -93,6 +100,7 @@ static void temp_humi_update(void *parameter)
 	rt_int16_t humi=0;
 	while(1)
 	{
+		
 		rt_mutex_take(key_mutex,10000);	//获取设置时间互斥量
 		temp=si702x_read_temperature();
 		humi=si702x_read_humidity();

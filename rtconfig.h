@@ -175,10 +175,11 @@
 
 #define BSP_USING_GPIO
 #define BSP_USING_UART
-#define BSP_USING_UART1
+#define BSP_USING_UART1 
+#define BSP_USING_UART2          //UART2Á¬½ÓGPS
 #define BSP_UART1_RX_USING_DMA
 #define BSP_USING_I2C3
-#define PKG_USING_SI702X
+#define PKG_USING_SI702X    
 #define BSP_USING_I2C1
 #define PKG_USING_PCF8563
 #define BSP_USING_I2C2

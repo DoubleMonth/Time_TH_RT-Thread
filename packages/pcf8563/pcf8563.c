@@ -106,7 +106,7 @@ struct pcf8563_time pcf8563_read_time(void)
 		time.minute=((time_buf[1]>>4)&0x07)*10+(time_buf[1]&0x0f);
 		time.hour=((time_buf[2]>>4)&0x03)*10+(time_buf[2]&0x0f);
 		rt_mutex_release(pcf8563_dev->lock);
-		rt_kprintf("Now time %d:%d:%d\n",time.hour,time.minute,time.second);
+//		rt_kprintf("Now time %d:%d:%d\n",time.hour,time.minute,time.second);
 	}
 	else
 	{
@@ -133,7 +133,7 @@ struct pcf8563_day pcf8563_read_day(void)
 		day.month=((time_buf[2]>>4)&0x01)*10+(time_buf[2]&0x0f);
 		day.year=((time_buf[3]>>4)&0x0f)*10+(time_buf[3]&0x0f);
 		rt_mutex_release(pcf8563_dev->lock);
-		rt_kprintf("The day 20%d-%d-%d,week %d\n",day.year,day.month,day.day,day.week);
+//		rt_kprintf("The day 20%d-%d-%d,week %d\n",day.year,day.month,day.day,day.week);
 	}
 	else
 	{

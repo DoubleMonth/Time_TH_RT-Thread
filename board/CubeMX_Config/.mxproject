@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=G:/Wondfo/RT-Thread/rt-thread-master1/bsp/stm32/stm32f103-mini-system/board/CubeMX_Config/Inc
+HeaderPath=D:/MCU/OS/RT-Thread/rt-thread-v3.1.3/rt-thread/bsp/stm32/stm32f103-mini-system/board/CubeMX_Config/Inc
 HeaderFiles=stm32f1xx_it.h;stm32f1xx_hal_conf.h;main.h;
-SourcePath=G:/Wondfo/RT-Thread/rt-thread-master1/bsp/stm32/stm32f103-mini-system/board/CubeMX_Config/Src
+SourcePath=D:/MCU/OS/RT-Thread/rt-thread-v3.1.3/rt-thread/bsp/stm32/stm32f103-mini-system/board/CubeMX_Config/Src
 SourceFiles=stm32f1xx_it.c;stm32f1xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

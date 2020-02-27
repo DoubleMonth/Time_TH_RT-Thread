@@ -17,6 +17,7 @@
 #include "bh1750/bh1750.h"
 #include "sensor/sensor.h"
 #include "agile_button-latest/examples/example_agile_button.h"
+#include "atgm336h/atgm336h.h"
 
 /* defined the LED0 pin: PC13 */
 //#define LED0_PIN    GET_PIN(C, 13)
@@ -74,6 +75,8 @@ int main(void)
 	thread_illuminace_update();
 	thread_keySetPcf8563Time();
 	mutex_key();
+	clrStruct();
+	uart2_sample();
 	
 //	rt_thread_mdelay(5000);
 //	time_temp.hour=23;

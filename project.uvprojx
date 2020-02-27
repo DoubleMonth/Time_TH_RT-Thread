@@ -777,6 +777,16 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>atgm336h</GroupName>
+          <Files>
+            <File>
+              <FileName>atgm336h.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\packages\atgm336h\atgm336h.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>
